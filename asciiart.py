@@ -2,8 +2,14 @@ import os
 from PIL import Image, ImageOps
 import numpy as np
 
-# Force script to run from its own directory
-os.chdir(os.path.dirname(os.path.abspath(__file__)))
+import sys
+
+if getattr(sys, 'frozen', False):
+    app_path = os.path.dirname(sys.executable)
+else:
+    app_path = os.path.dirname(os.path.abspath(__file__))
+
+os.chdir(app_path)
 
 def image_to_ascii(image_path, width=100, height=60):
     try:
